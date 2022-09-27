@@ -2,7 +2,7 @@
 #This program checks for a license code
 import os
 import sys
-directory = os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1])
+directory = os.path.dirname(os.path.abspath (__file__))
 #license code
 license = 'afhui3y7123u8aef127389qweiuhfdsiuh284huidasfhui'
 #Checks the file for the license code
@@ -19,7 +19,7 @@ else:
 if license == c[0]:
     print('Welcome. We are setting up.')
     #Creates directory.txt which stores user directory and use times
-    x = open(directory+'\\sites\\license.txt','w')
+    x = open(directory+'\\sites\\license1.txt','w')
     d = open(directory+'\\sites\\directory.txt','w')
     d.write(directory)
     d.write('\n0')
