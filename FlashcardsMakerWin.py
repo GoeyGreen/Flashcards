@@ -3,10 +3,9 @@
 #Uses wordnet and omw from nltk.corpus
 input('Press Enter to Continue')
 import os
-import sys
 #Checks if the directory is the same as the one created by the RunThisFirst program
 #If the directory is different, it will not run
-directory = os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1])
+directory = os.path.dirname(os.path.abspath (__file__))
 fd = open(directory + '\\sites\\directory.txt','r')
 c = fd.read()
 x = c.split('\n')
@@ -16,11 +15,11 @@ else:
     pass
 fc = open(directory + '\\sites\\directory.txt','w')
 x[1] = int(x[1])+1
-fc.write(os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
+fc.write(os.path.dirname(os.path.abspath (__file__)))
 fc.write('\n'+str(x[1]))
 #Checks for a connection
 import urllib.request
-def connect(host='http:/google.com'):
+def connect(host='http://google.com'):
     try:
         urllib.request.urlopen(host) #Python 3.x
         return True
@@ -28,6 +27,7 @@ def connect(host='http:/google.com'):
         return False
 #If there is a connection, it will download the necessary packages nltk
 x = connect()
+print(x)
 if x == True:
     import nltk
     nltk.download('omw')
