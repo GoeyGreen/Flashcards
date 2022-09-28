@@ -5,7 +5,8 @@ input('Press Enter to Continue')
 import os
 #Checks if the directory is the same as the one created by the RunThisFirst program
 #If the directory is different, it will not run
-directory = os.path.dirname(os.path.abspath (__file__))
+directory = os.getcwd()
+
 fd = open(directory + '\\sites\\directory.txt','r')
 c = fd.read()
 x = c.split('\n')
@@ -15,8 +16,9 @@ else:
     pass
 fc = open(directory + '\\sites\\directory.txt','w')
 x[1] = int(x[1])+1
-fc.write(os.path.dirname(os.path.abspath (__file__)))
+fc.write(os.getcwd())
 fc.write('\n'+str(x[1]))
+
 #Checks for a connection
 import urllib.request
 def connect(host='http://google.com'):
@@ -88,7 +90,10 @@ else:
             whichdef = int(input('Which definition do you want?(Type the number) '))
             wordf = word +' ('+tmpdef[whichdef-1].pos() + '.)'
             wordb = tmpdef[whichdef-1].definition()
-            words = tmpdef[whichdef-1].examples()[0]
+            if len(tmpdef[whichdef-1].examples()[0]) > 0:
+                words = tmpdef[whichdef-1].examples()[0]
+            else:
+                pass
             front.append(wordf)
             back.append(wordb)
             sentence.append(words)
