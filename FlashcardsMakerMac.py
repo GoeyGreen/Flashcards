@@ -10,6 +10,7 @@ directory = os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1])
 fd = open(directory + '/sites/directory.txt','r')
 c = fd.read()
 x = c.split('\n')
+v =  x
 if x[0] != directory or int(x[1])>20:
     exit()
 else:
@@ -18,9 +19,10 @@ fc = open(directory + '/sites/directory.txt','w')
 x[1] = int(x[1])+1
 fc.write(os.path.sep.join(sys.argv[0].split(os.path.sep)[:-1]))
 fc.write('\n'+str(x[1]))
+
 #Checks for a connection
 import urllib.request
-def connect(host='http:/google.com'):
+def connect(host='https://google.com/'):
     try:
         urllib.request.urlopen(host) #Python 3.x
         return True
@@ -28,6 +30,7 @@ def connect(host='http:/google.com'):
         return False
 #If there is a connection, it will download the necessary packages nltk
 x = connect()
+print(x)
 if x == True:
     import nltk
     nltk.download('omw')
@@ -40,7 +43,6 @@ groupname = input('What do you want to name your flashcards ')
 ff = open(directory + '/sites/' + groupname + 'front.txt','w')
 fb = open(directory + '/sites/'  + groupname + 'back.txt','w')
 fs = open(directory + '/sites/' + groupname + 'sentences.txt','w')
-
 sentence = []
 front = []
 back = []
@@ -88,18 +90,39 @@ else:
             whichdef = int(input('Which definition do you want?(Type the number) '))
             wordf = word +' ('+tmpdef[whichdef-1].pos() + '.)'
             wordb = tmpdef[whichdef-1].definition()
-            words = tmpdef[whichdef-1].examples()[0]
+            if len(tmpdef[whichdef-1].examples()) > 0:
+                words = tmpdef[whichdef-1].examples()[0]
+                sentence.append(words)
+            else:
+                print('Sorry, this word doesn\'t have an example sentence')
+                flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                confirm = input('Is this correct:'+ flashcontents+'(y or n)')
+                if confirm == 'y':
+                    sentence.append(flashcontents)
+                else:
+                    flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                    sentence.append(flashcontents)
             front.append(wordf)
             back.append(wordb)
-            sentence.append(words)
         #If there is one definition, it automatically adds the definition
         else:
             wordf = word +' ('+tmpdef[0].pos() + '.)'
             wordb = tmpdef[0].definition()
-            words = tmpdef[0].examples()[0]
+            if len(tmpdef[0].examples()) > 0:
+                words = tmpdef[0].examples()[0]
+                sentence.append(words)
+            else:
+                print('Sorry, this word doesn\'t have an example sentence')
+                flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                confirm = input('Is this correct:'+ flashcontents+'(y or n)')
+                if confirm == 'y':
+                    sentence.append(flashcontents)
+                else:
+                    flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                    sentence.append(flashcontents)
             front.append(wordf)
             back.append(wordb)
-            sentence.append(words)
+
 
 print('RUN THE READING PROGRAM TO USE.')
 ff.write('\n'.join(front))
