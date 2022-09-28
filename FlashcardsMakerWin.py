@@ -92,6 +92,7 @@ else:
             wordb = tmpdef[whichdef-1].definition()
             if len(tmpdef[whichdef-1].examples()) > 0:
                 words = tmpdef[whichdef-1].examples()[0]
+                sentence.append(words)
             else:
                 print('Sorry, this word doesn\'t have an example sentence')
                 flashcontents = input('Please write the contents of the flashcard(sentence) ')
@@ -103,13 +104,13 @@ else:
                     sentence.append(flashcontents)
             front.append(wordf)
             back.append(wordb)
-            sentence.append(words)
         #If there is one definition, it automatically adds the definition
         else:
             wordf = word +' ('+tmpdef[0].pos() + '.)'
             wordb = tmpdef[0].definition()
             if len(tmpdef[whichdef-1].examples()) > 0:
                 words = tmpdef[whichdef-1].examples()[0]
+                sentence.append(words)
             else:
                 print('Sorry, this word doesn\'t have an example sentence')
                 flashcontents = input('Please write the contents of the flashcard(sentence) ')
@@ -121,7 +122,7 @@ else:
                     sentence.append(flashcontents)
             front.append(wordf)
             back.append(wordb)
-            sentence.append(words)
+
 
 print('RUN THE READING PROGRAM TO USE.')
 ff.write('\n'.join(front))
