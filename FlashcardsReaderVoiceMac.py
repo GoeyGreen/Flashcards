@@ -34,7 +34,7 @@ sp = open(directory + '/sites/speed.txt','r')
 c = sp.read()
 if c == '0':
     while z == 0:
-        x = int(input('Set your preferred speech speed '))
+        x = int(input('Set your preferred speech speed (higher is faster) '))
         engine.setProperty("rate", x)
         engine.say('Speed Test')
         engine.runAndWait()
@@ -71,7 +71,7 @@ while d <= times:
     #The engine will say the word, example sentence, and word
     #It will then prompt the user to give the spelling and part of speech
     for i in range(length):
-        x = random.choice(range(len(reinw)))
+        x = random.choice(range(len(voice)))
         engine.say(voice[x])
         engine.say(reins2[x])
         engine.say(voice[x])
