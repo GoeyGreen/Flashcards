@@ -10,6 +10,7 @@ directory = os.getcwd()
 fd = open(directory + '\\sites\\directory.txt','r')
 c = fd.read()
 x = c.split('\n')
+v =  x
 if x[0] != directory or int(x[1])>20:
     exit()
 else:
@@ -108,8 +109,8 @@ else:
         else:
             wordf = word +' ('+tmpdef[0].pos() + '.)'
             wordb = tmpdef[0].definition()
-            if len(tmpdef[whichdef-1].examples()) > 0:
-                words = tmpdef[whichdef-1].examples()[0]
+            if len(tmpdef[0].examples()) > 0:
+                words = tmpdef[0].examples()[0]
                 sentence.append(words)
             else:
                 print('Sorry, this word doesn\'t have an example sentence')
