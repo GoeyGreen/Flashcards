@@ -7,7 +7,7 @@ import os
 import sys
 import random
 #Get all directories and read them
-directory = os.path.dirname(os.path.abspath (__file__))
+directory = os.getcwd()
 groupname = input('What file do you want to open? ')
 ff = open(directory + '\\sites\\' + groupname + 'front.txt','r')
 fb = open(directory + '\\sites\\'  + groupname + 'back.txt','r')
