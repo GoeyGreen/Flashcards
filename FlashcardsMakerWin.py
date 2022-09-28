@@ -21,7 +21,7 @@ fc.write('\n'+str(x[1]))
 
 #Checks for a connection
 import urllib.request
-def connect(host='http://google.com'):
+def connect(host='https://google.com/'):
     try:
         urllib.request.urlopen(host) #Python 3.x
         return True
@@ -90,10 +90,17 @@ else:
             whichdef = int(input('Which definition do you want?(Type the number) '))
             wordf = word +' ('+tmpdef[whichdef-1].pos() + '.)'
             wordb = tmpdef[whichdef-1].definition()
-            if len(tmpdef[whichdef-1].examples()[0]) > 0:
+            if len(tmpdef[whichdef-1].examples()) > 0:
                 words = tmpdef[whichdef-1].examples()[0]
             else:
-                pass
+                print('Sorry, this word doesn\'t have an example sentence')
+                flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                confirm = input('Is this correct:'+ flashcontents+'(y or n)')
+                if confirm == 'y':
+                    sentence.append(flashcontents)
+                else:
+                    flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                    sentence.append(flashcontents)
             front.append(wordf)
             back.append(wordb)
             sentence.append(words)
@@ -101,7 +108,17 @@ else:
         else:
             wordf = word +' ('+tmpdef[0].pos() + '.)'
             wordb = tmpdef[0].definition()
-            words = tmpdef[0].examples()[0]
+            if len(tmpdef[whichdef-1].examples()) > 0:
+                words = tmpdef[whichdef-1].examples()[0]
+            else:
+                print('Sorry, this word doesn\'t have an example sentence')
+                flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                confirm = input('Is this correct:'+ flashcontents+'(y or n)')
+                if confirm == 'y':
+                    sentence.append(flashcontents)
+                else:
+                    flashcontents = input('Please write the contents of the flashcard(sentence) ')
+                    sentence.append(flashcontents)
             front.append(wordf)
             back.append(wordb)
             sentence.append(words)
